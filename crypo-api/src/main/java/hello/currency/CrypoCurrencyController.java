@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transaction;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -27,7 +28,12 @@ public class CrypoCurrencyController {
     // return the 5 latest transactions
     @RequestMapping(value = "/currencies", method = RequestMethod.GET)
     public @ResponseBody
-    Iterable<CryptoCurrency> getLastTransactions() {
+    Iterable<CryptoCurrency> getLastTransactions(HttpServletRequest request) {
+
+
+        String userName = request.getUserPrincipal().getName();
+        System.out.println("Within Crypo and the username is: " + userName);
+
         CryptoCurrency cc1 = new CryptoCurrency();
         cc1.setCurrencyName("BitCoin");
         CryptoCurrency cc2 = new CryptoCurrency();
