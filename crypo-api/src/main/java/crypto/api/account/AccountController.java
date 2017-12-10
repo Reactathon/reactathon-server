@@ -1,12 +1,8 @@
-package hello.account;
+package crypto.api.account;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -27,6 +23,14 @@ public class AccountController {
     Account information(HttpServletRequest request) {
         String userName = request.getUserPrincipal().getName();
         return accountRepository.findByUsername(userName);
+    }
+
+    @CrossOrigin
+    @RequestMapping(value = "/account/create", method = RequestMethod.POST)
+    public @ResponseBody
+    void create(@RequestBody Account account) {
+        System.out.println("Trying to save account: " +  account);
+//        accountRepository.save(account);
     }
 
 }

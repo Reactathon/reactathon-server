@@ -1,4 +1,4 @@
-package hello.account;
+package crypto.api.account;
 
 import org.springframework.data.repository.CrudRepository;
 

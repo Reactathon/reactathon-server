@@ -1,7 +1,7 @@
-package hello;
+package crypto.api;
 
-import hello.account.Account;
-import hello.account.AccountRepository;
+import crypto.api.account.Account;
+import crypto.api.account.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -24,13 +24,6 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
-/*@SpringBootApplication
-public class Application {
-
-	public static void main(String[] args) {
-		SpringApplication.run(Application.class, args);
-	}
-}*/
 
 @Configuration
 @ComponentScan
@@ -46,8 +39,11 @@ public class Application {
         return new CommandLineRunner() {
             @Override
             public void run(String... arg0) throws Exception {
-//                accountRepository.save(new Account("rbaxter", "password"));
+                Account account = accountRepository.findByUsername("jonah");
 
+                if(account == null) {
+                    accountRepository.save(new Account("jonah", "password"));
+                }
             }
         };
     }
@@ -121,5 +117,6 @@ class WebConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**").allowedOrigins( "http://localhost:3000" );
+        registry.addMapping("/**").allowedOrigins( "*" );
     }
 }

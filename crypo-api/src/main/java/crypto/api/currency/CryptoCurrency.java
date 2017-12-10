@@ -1,4 +1,4 @@
-package hello.currency;
+package crypto.api.currency;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

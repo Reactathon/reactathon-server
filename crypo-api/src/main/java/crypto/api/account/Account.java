@@ -1,7 +1,6 @@
-package hello.account;
+package crypto.api.account;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.springframework.data.annotation.Id;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,6 +14,8 @@ public class Account {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String username;
+
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
     public Account() {
@@ -41,13 +42,17 @@ public class Account {
         this.username = username;
     }
 
-    @JsonIgnore
     public String getPassword() {
         return password;
     }
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return "username: " + username + " password: " + password;
     }
 
 }
