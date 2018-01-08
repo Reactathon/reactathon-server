@@ -29,8 +29,8 @@ public class AccountController {
     @RequestMapping(value = "/account/create", method = RequestMethod.POST)
     public @ResponseBody
     void create(@RequestBody Account account) {
-        System.out.println("Trying to save account: " +  account);
-//        accountRepository.save(account);
+        System.out.println("Save account: " +  account);
+        accountRepository.save(account);
     }
 
 }
