@@ -3,7 +3,7 @@ Basic Spring Boot server to be used with the 'reactathon' training/hackathon.
 
 ## Running the JAR:
 
-`java -jar crypto-api-rest-0.1.0.jar`
+`java -jar hackathon-api-rest-0.1.0.jar`
 
 Once the server is up and running it can be accessed on port **8080**
 
@@ -16,8 +16,10 @@ or
 
 ```
 mvn clean package
-java -jar target/crypto-api-rest-0.1.0.jar
+java -jar target/hackathon-api-rest-0.1.0.jar
 ```
+
+The application should be running on port `8080`.
 
 ## Database
 
@@ -60,3 +62,49 @@ Request Body:
 #### Default User:
 
 Upon creation there should be a single crated default user with username: `jonah` and password `password`.
+
+### Profile:
+
+#### Load a specific profile
+
+GET `/profile/{profileId}`
+
+Sample Response Body:
+```
+{
+    "id": 1,
+    "firstName": "Jane",
+    "lastName": "Smith",
+    "email": "Jane.Smith@jonahgroup.com"
+}
+```
+
+#### Create a profile
+
+POST `/profile`
+
+Request Body:
+```
+{
+    "firstName": "Jane",
+    "lastName": "Smith",
+    "email": "Jane.Smith@jonahgroup.com"
+}
+```
+
+#### Update a profile
+
+PUT '/profile/{profileId}'
+
+Request Body:
+```
+{
+    "firstName": "Jane",
+    "lastName": "Smith",
+    "email": "Jane.Smith@jonahgroup.com"
+}
+```
+
+#### Load all profiles
+
+GET `/profiles`
